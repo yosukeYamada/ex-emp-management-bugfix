@@ -91,8 +91,9 @@ public class EmployeeRepository {
 	 * @return
 	 */
 	public List<Employee> findByEmployeeName(String name){
-		String sql ="SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees WHERE name=:name";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name);
+		String sql ="SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees WHERE name LIKE :name ORDER BY hire_date" ;
+		String paraName = "%" + name + "%";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", paraName);
 		List<Employee> employeeList = template.query(sql, param,EMPLOYEE_ROW_MAPPER);
 		return employeeList;
 		
