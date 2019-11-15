@@ -57,7 +57,7 @@ public class AdministratorController {
 	 * @return 管理者登録画面
 	 */
 	@RequestMapping("/toInsert")
-	public String toInsert(Model model) {
+	public String toInsert() {
 		return "administrator/insert";
 	}
 
@@ -77,7 +77,7 @@ public class AdministratorController {
 			result.rejectValue("password",null, "パスワードと確認用パスワードが異なります");
 		}
 		if (result.hasErrors()) {
-			return toInsert(model);
+			return toInsert();
 		}
 
 //		|| !(administratorService.findByMailAddress(administrator.getMailAddress()).equals(null))
